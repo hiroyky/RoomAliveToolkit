@@ -1425,7 +1425,10 @@ namespace RoomAliveToolkit
         public void SaveToOBJ(string directory)
         {
             // force decimal point so standard programs like MeshLab can read this
-            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            //System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             var objDirectory = directory + "//obj";
 
@@ -1631,7 +1634,10 @@ namespace RoomAliveToolkit
         static public void SaveToPly(string filename, Float3Image pts3D)
         {
             // force decimal point so standard programs like MeshLab can read this
-            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            //System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(filename, false, Encoding.ASCII))
             {
